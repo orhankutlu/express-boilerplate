@@ -2,35 +2,23 @@ const mongoose = require('mongoose');
 const mongooseDelete = require('mongoose-delete');
 
 const USER_SCHEMA = {
-  code: {
+  username: {
+    type: mongoose.Schema.Types.String,
+    unique: true
+  },
+  email: {
     type: mongoose.Schema.Types.String,
     unique: true
   },
   firstName: mongoose.Schema.Types.String,
   lastName: mongoose.Schema.Types.String,
-  email: {
-    type: mongoose.Schema.Types.String,
-    unique: true
-  },
-  phone: {
-    number: mongoose.Schema.Types.String
-  },
   confirmed: mongoose.Schema.Types.Boolean,
   auth: {
     code: mongoose.Schema.Types.String,
     createdAt: mongoose.Schema.Types.Date,
-    provider: {
-      type: mongoose.Schema.Types.String,
-      get(authProvider) {
-        return authProvider || 'local';
-      }
-    }
   },
-  registrationCompleted: mongoose.Schema.Types.Boolean,
-  meta: {
-    type: mongoose.Schema.Types.Mixed,
-    default: {}
-  },
+  planCode: mongoose.Schema.Types.String,
+  profilePhoto: mongoose.Schema.Types.String
 };
 
 const schema = new mongoose.Schema(USER_SCHEMA, {

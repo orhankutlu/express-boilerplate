@@ -5,16 +5,9 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "npm run start:dev",
-      "name": "Nodemon",
-      "request": "launch",
-      "type": "node-terminal",
-      "outputCapture": "std",
-    },
-    {
         "type": "node",
         "request": "launch",
-        "name": "Node 14",
+        "name": "Node 16",
         "program": "${workspaceFolder}/bin/www",
         "skipFiles": [
             "<node_internals>/**"
@@ -24,7 +17,7 @@
           "!**/node_modules/**"
         ],
         "outputCapture": "std",
-        "runtimeVersion": "14.15.5"
+        "runtimeVersion": "16.1.0"
     },
   ]
 }

@@ -1,16 +1,17 @@
 const jwt = require('jsonwebtoken');
+const configs = require('../configs');
 
 const TokenManager = {
-  verify: (token, key) => {
+  decode: (token) => {
     try {
-      const decoded = jwt.verify(token, key);
+      const decoded = jwt.verify(token, configs.auth.secret);
       return decoded;
     } catch (err) {
       return null;
     }
   },
-  sign: (payload, secret, options = {}) => {
-    return jwt.sign(payload, secret, options);
+  sign: (payload, options = {}) => {
+    return jwt.sign(payload, configs.auth.secret, options);
   }
 };
 

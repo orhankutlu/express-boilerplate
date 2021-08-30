@@ -1,20 +1,20 @@
-const UserManager = require('../../../business/UserManager');
+const AuthManager = require('../../../business/AuthManager');
 const AuthMutator = require('./mutator');
 
 const AuthController = {
   signin: async (request) => {
     const { email } = request.inputs;
-    const resp = await UserManager.signin(email);
+    const resp = await AuthManager.signin(email);
     return resp;
   },
   verify: async (request) => {
-    const { email, code } = request.inputs;
-    const { user, token } = await UserManager.verify(email, code);
+    const { email, oneTimePassword } = request.inputs;
+    const { user, token } = await AuthManager.verify(email, oneTimePassword);
     return AuthMutator.verify({ user, token });
   },
   resend: async (request) => {
     const { email } = request.inputs;
-    const resp = await UserManager.signin(email);
+    const resp = await AuthManager.signin(email);
     return resp;
   },
 };

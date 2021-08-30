@@ -23,4 +23,10 @@ module.exports = {
     name: 'InternalServerError',
     httpCode: 500
   },
+  InvalidUserVerificationCode: {
+    name: 'InvalidUserVerificationCode'
+  },
+  UserNotFound: {
+    name: 'UserNotFound'
+  }
 };

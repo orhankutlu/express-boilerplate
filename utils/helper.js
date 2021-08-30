@@ -1,11 +1,10 @@
+const random = require('random-key');
 const _ = require('lodash');
-const xml2js = require('xml2js');
-const libphonenumber = require('libphonenumber-js');
 const crawlerDetector = require('spider-detector');
 const mongoose = require('mongoose');
-const logger = require('./utils/logger');
-const ApplicationError = require('./errors/ApplicationError');
-const ErrorCodes = require('./errors/ErrorCodes');
+const ApplicationError = require('../ApplicationError');
+const ErrorCodes = require('../ErrorCodes');
+const dayjs = require('dayjs');
 
 
 const ALL_STATES = {
@@ -34,35 +33,6 @@ const Helper = {
           sortQuery
         }
       });
-    }
-  },
-  parseXML: async (payload) => {
-    const data = await xml2js.parseStringPromise(payload, {
-      strict: false
-    });
-
-    return data;
-  },
-  formatPhoneNumber: (phone, countryIso = 'US') => {
-    try {
-      const phoneNumber = libphonenumber.parsePhoneNumber(phone, countryIso);
-      if (!phoneNumber) {
-        return {};
-      }
-
-      const countryCode = `+${phoneNumber.countryCallingCode}`;
-
-      return {
-        fullNumber: phoneNumber.number,
-        national: phoneNumber.number.replace(countryCode, ''),
-        countryCode,
-      };
-    } catch (err) {
-      logger.error('phoneFormatter:: formatting error', err);
-      return {
-        fullNumber: phone,
-        national: phone
-      };
     }
   },
   renderMessage: (messageTemplate, templateParams) => {
@@ -126,6 +96,15 @@ const Helper = {
       newUrl.searchParams.set(key, params[key]);
     });
     return newUrl;
+  },
+  generateRandomNumber: (numberOfDigits = 4) => {
+    const number = random.generateDigits(numberOfDigits);
+    return number;
+  },
+  date: {
+    now: () => {
+      return dayjs();
+    }
   }
 };
 

@@ -10,10 +10,16 @@ const USER_SCHEMA = {
     type: mongoose.Schema.Types.String,
     unique: true
   },
-  firstName: mongoose.Schema.Types.String,
-  lastName: mongoose.Schema.Types.String,
-  confirmed: mongoose.Schema.Types.Boolean,
-  auth: {
+  fullName: mongoose.Schema.Types.String,
+  emailConfirmed: {
+    type: mongoose.Schema.Types.Boolean,
+    default: false,
+  },
+  registrationCompleted: {
+    type: mongoose.Schema.Types.Boolean,
+    default: false,
+  },
+  oneTimePassword: {
     code: mongoose.Schema.Types.String,
     createdAt: mongoose.Schema.Types.Date,
   },

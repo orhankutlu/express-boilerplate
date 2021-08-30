@@ -15,7 +15,7 @@ const verifyToken = (secretKey) => {
       });
     }
 
-    const decoded = tokenManager.verify(token, secretKey);
+    const decoded = tokenManager.decode(token, secretKey);
 
     if (!decoded) {
       throw new ApplicationError({

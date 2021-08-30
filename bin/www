@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+require('dotenv').config();
+
+if (process.env.ENABLE_DATADOG === 'true') {
+  require('dd-trace').init();
+}
+const http = require('http');
+
+const config = require('../configs');
+const { makeApp } = require('../app.js');
+const logger = require('../utils/logger');
+
+(async () => {
+  try {
+    const app = await makeApp();
+    const port = normalizePort(config.port || '3000');
+    app.set('port', port);
+    const server = http.createServer(app);
+
+    server.listen(port, (err) => {
+      if (err) {
+        logger.error('Cant start the app ', err);
+        return process.exit(1);
+      }
+
+      return logger.info(`Server listening on port ${port}`);
+    });
+  } catch (err) {
+    logger.error('Cant start the app ', err);
+    process.exit(1);
+  }
+})();
+
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+const normalizePort = (val) => {
+  const normalizedPort = parseInt(val, 10);
+
+  if (isNaN(normalizedPort)) {
+    // named pipe
+    return val;
+  }
+
+  if (normalizedPort >= 0) {
+    // port number
+    return normalizedPort;
+  }
+
+  return false;
+};

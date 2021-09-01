@@ -11,12 +11,6 @@ const Publisher = {
       action: 'sign-in'
     },
 
-    USER_ACCOUNT_CREATED: {
-      name: 'USER_ACCOUNT_CREATED',
-      category: 'user',
-      action: 'account-created'
-    },
-
   },
   _driver: null,
   adapters: {

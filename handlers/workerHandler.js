@@ -2,7 +2,6 @@ const logger = require('../utils/logger');
 
 const JOBS_BY_EVENT = {
   USER_SIGN_IN: require('../jobs/userSignIn'),
-  USER_ACCOUNT_CREATED: require('../jobs/userAccountCreated'),
 };
 
 const WorkerHandler = {

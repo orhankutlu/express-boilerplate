@@ -104,6 +104,9 @@ const Helper = {
   date: {
     now: () => {
       return dayjs();
+    },
+    hasPassed: ({ date, duration, unit = 'minutes' }) => {
+      return dayjs(date).add(duration, unit).isAfter(Helper.date.now());
     }
   }
 };

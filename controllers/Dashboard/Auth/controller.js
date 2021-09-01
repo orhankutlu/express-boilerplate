@@ -12,11 +12,6 @@ const AuthController = {
     const { user, token } = await AuthManager.verify(email, oneTimePassword);
     return AuthMutator.verify({ user, token });
   },
-  resend: async (request) => {
-    const { email } = request.inputs;
-    const resp = await AuthManager.signin(email);
-    return resp;
-  },
 };
 
 module.exports = AuthController;

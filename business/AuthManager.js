@@ -25,7 +25,10 @@ const AuthManager = {
   },
   verify: async (email, oneTimePassword) => {
     let user = await UserManager.getOne({ email });
-    if (user.oneTimePassword.code !== oneTimePassword) {
+    if (user.oneTimePassword.code !== oneTimePassword || !Helper.date.hasPassed({
+      date: user.oneTimePassword.createdAt,
+      duration: configs.auth.oneTimePasswordExpiresInMinutes
+    })) {
       throw new ApplicationError({
         error: ErrorCodes.InvalidUserVerificationCode,
         meta: {
@@ -36,7 +39,7 @@ const AuthManager = {
     }
     if (!user.confirmed) {
       user = await UserManager.updateOne(user.id, {
-        emailConfirmed: true
+        emailConfirmed: true,
       });
     }
     const token = await AuthManager.generateToken(user);

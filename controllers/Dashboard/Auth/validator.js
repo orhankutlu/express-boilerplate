@@ -6,10 +6,6 @@ module.exports = {
     email: Joi.string().trim().lowercase().email({ minDomainSegments: 2 })
       .required()
   }).required()),
-  resend: isValid(Joi.object().keys({
-    email: Joi.string().trim().lowercase().email({ minDomainSegments: 2 })
-      .required()
-  }).required()),
   verify: isValid(Joi.object().keys({
     email: Joi.string().trim().lowercase().email({ minDomainSegments: 2 })
       .required(),

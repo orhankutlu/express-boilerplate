@@ -1,15 +1,13 @@
 module.exports = {
   get: ({ user }) => {
     return {
-      code: user.code,
+      id: user.id,
+      username: user.username,
       email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      companyName: user.companyName,
-      phone: user.phone,
-      confirmed: user.confirmed,
+      fullName: user.fullName,
+      emailConfirmed: user.emailConfirmed,
       registrationCompleted: user.registrationCompleted,
-      status: user.status
+      profilePhoto: user.profilePhoto
     };
   }
 };

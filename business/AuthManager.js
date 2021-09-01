@@ -40,6 +40,7 @@ const AuthManager = {
     if (!user.confirmed) {
       user = await UserManager.updateOne(user.id, {
         emailConfirmed: true,
+        oneTimePassword
       });
     }
     const token = await AuthManager.generateToken(user);
@@ -56,7 +57,8 @@ const AuthManager = {
       fullName: user.fullName,
       registrationCompleted: user.registrationCompleted,
       profilePhoto: user.profilePhoto,
-      planCode: user.planCode
+      planCode: user.planCode,
+      scopes: ['user']
     });
     return token;
   },

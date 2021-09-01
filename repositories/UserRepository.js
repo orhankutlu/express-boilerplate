@@ -18,9 +18,11 @@ const UserRepository = {
   },
   findOne: async ({
     email = null,
+    id = null,
   }) => {
     const where = _.omitBy({
       email,
+      _id: id
     }, _.isNil);
 
     return UserModel.findOne(where);
@@ -30,17 +32,19 @@ const UserRepository = {
     registrationCompleted,
     fullName,
     username,
-    profilePhoto
+    profilePhoto,
+    email,
   } = {}) => {
     const filter = {
-      id
+      _id: id
     };
     const update = _.omitBy({
       emailConfirmed,
       registrationCompleted,
       fullName,
       username,
-      profilePhoto
+      profilePhoto,
+      email
     }, _.isNil);
     const user = await UserModel.findOneAndUpdate(filter, update, { new: true });
     return user;

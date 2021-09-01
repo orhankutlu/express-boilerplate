@@ -1,15 +1,14 @@
 const Joi = require('joi');
+const configs = require('../../../configs');
 const { isValid } = require('../../../middlewares');
 
 module.exports = {
   update: isValid(Joi.object().keys({
-    firstName: Joi.string().trim().max(100).optional(),
-    lastName: Joi.string().trim().max(100).optional(),
-    companyName: Joi.string().trim().max(100).optional(),
-    phoneNumber: Joi.string().trim().optional(),
-    registrationCompleted: Joi.boolean().optional(),
-    status: Joi.object().keys({
-      hasWalkedThrough: Joi.boolean().optional()
-    }).optional()
+    username: Joi.string().trim().lowercase().max(100)
+      .regex(configs.business.user.usernameRegex)
+      .optional(),
+    fullName: Joi.string().trim().max(100).optional(),
+    email: Joi.string().trim().lowercase().email({ minDomainSegments: 2 }),
+    profilePhoto: Joi.string().trim().max(100).optional(),
   }))
 };

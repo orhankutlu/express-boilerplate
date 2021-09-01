@@ -19,5 +19,20 @@
         "outputCapture": "std",
         "runtimeVersion": "16.1.0"
     },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Node 14",
+      "program": "${workspaceFolder}/bin/www",
+      "skipFiles": [
+          "<node_internals>/**"
+      ],
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ],
+      "outputCapture": "std",
+      "runtimeVersion": "14.15.5"
+  },
   ]
 }

@@ -16,5 +16,8 @@ module.exports = {
   },
   links: {
     dashboardSso: process.env.DASHBOARD_SSO || 'http://localhost:3000'
+  },
+  user: {
+    usernameRegex: /^[a-zA-Z0-9_.-]*$/,
   }
 };

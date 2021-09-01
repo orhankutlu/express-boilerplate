@@ -16,8 +16,8 @@ const UserManager = {
 
     return user;
   },
-  getOne: async ({ email }) => {
-    const user = await UserRepository.findOne({ email });
+  getOne: async ({ email, id }) => {
+    const user = await UserRepository.findOne({ email, id });
     if (!user) {
       throw new ApplicationError({
         error: ErrorCodes.UserNotFound,
@@ -29,21 +29,23 @@ const UserManager = {
     return user;
   },
   updateOne: async ({ id }, {
-    emailConfirmed = null,
-    registrationCompleted = null,
-    fullName = null,
-    username = null,
-    profilePhoto = null
+    emailConfirmed,
+    registrationCompleted,
+    fullName,
+    username,
+    profilePhoto,
+    email,
   } = {}) => {
     const user = await UserRepository.updateOne({ id }, {
       emailConfirmed,
       registrationCompleted,
       fullName,
       username,
-      profilePhoto
+      profilePhoto,
+      email,
     });
     return user;
-  }
+  },
 };
 
 module.exports = UserManager;

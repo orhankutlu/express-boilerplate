@@ -21,4 +21,10 @@ router.post(
   actionHandler(controller.verify)
 );
 
+router.post(
+  '/user/local/check-username',
+  middlewareHandler(validator.checkUsername),
+  actionHandler(controller.checkUsername)
+);
+
 module.exports = router;

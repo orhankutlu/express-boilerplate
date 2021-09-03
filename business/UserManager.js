@@ -23,6 +23,7 @@ const UserManager = {
         error: ErrorCodes.UserNotFound,
         meta: {
           email,
+          id
         }
       });
     }
@@ -52,13 +53,25 @@ const UserManager = {
   },
 
   completeRegistration: async ({ id, username, name }) => {
+    let user = await UserManager.getOne({ id });
+    if (user.registrationCompleted) {
+      throw new ApplicationError({
+        error: ErrorCodes.UserAlreadyRegistered,
+        meta: {
+          userId: id
+        }
+      });
+    }
     const AuthManager = require('./AuthManager');
     if (await UserManager.isUsernameTaken(username)) {
       throw new ApplicationError({
-        error: ErrorCodes.UsernameTaken
+        error: ErrorCodes.UsernameTaken,
+        meta: {
+          username
+        }
       });
     }
-    const user = await UserManager.updateOne({ id }, {
+    user = await UserManager.updateOne({ id }, {
       registrationCompleted: true,
       name,
       username

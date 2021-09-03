@@ -31,5 +31,8 @@ module.exports = {
   },
   UsernameTaken: {
     name: 'UsernameTaken'
+  },
+  UserAlreadyRegistered: {
+    name: 'UserAlreadyRegistered'
   }
 };

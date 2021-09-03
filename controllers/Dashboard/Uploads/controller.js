@@ -4,11 +4,11 @@ const FileUploader = require('../../../utils/fileUploader');
 
 const UploadController = {
   uploadAsset: async (request, { locals }) => {
-    const { code } = locals.token;
+    const { id } = locals.token;
     const { file } = request;
     const extension = file.originalname.split('.').pop();
     const fileName = `${random.generateBase30(16)}.${extension}`;
-    const filePath = `users/${code}/uploads/${fileName}`;
+    const filePath = `users/${id}/uploads/${fileName}`;
     const { buffer } = file;
     await FileUploader.putObject({
       driver: configs.business.fileUploads.driver,

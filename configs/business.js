@@ -19,5 +19,6 @@ module.exports = {
   },
   user: {
     usernameRegex: /^[a-zA-Z0-9_.-]*$/,
+    usernameMax: 40,
   }
 };

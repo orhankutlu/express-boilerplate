@@ -1,4 +1,5 @@
 const AuthManager = require('../../../business/AuthManager');
+const UserManager = require('../../../business/UserManager');
 const AuthMutator = require('./mutator');
 
 const AuthController = {
@@ -12,6 +13,11 @@ const AuthController = {
     const { user, token } = await AuthManager.verify(email, oneTimePassword);
     return AuthMutator.verify({ user, token });
   },
+  checkUsername: async (request) => {
+    const { username } = request.inputs;
+    const usernameTaken = await UserManager.isUsernameTaken(username);
+    return usernameTaken;
+  }
 };
 
 module.exports = AuthController;

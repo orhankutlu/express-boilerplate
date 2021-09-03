@@ -16,6 +16,5 @@ module.exports = {
     username: Joi.string().trim().lowercase().max(configs.business.user.usernameMax)
       .regex(configs.business.user.usernameRegex)
       .required(),
-    oneTimePassword: Joi.string().trim().required()
   }).required()),
 };

@@ -16,7 +16,7 @@ const AuthController = {
   checkUsername: async (request) => {
     const { username } = request.inputs;
     const usernameTaken = await UserManager.isUsernameTaken(username);
-    return usernameTaken;
+    return { usernameTaken };
   }
 };
 

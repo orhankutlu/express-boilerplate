@@ -21,7 +21,7 @@ router.post(
   actionHandler(controller.verify)
 );
 
-router.post(
+router.get(
   '/user/local/check-username',
   middlewareHandler(validator.checkUsername),
   actionHandler(controller.checkUsername)

@@ -1,4 +1,3 @@
-const AuthManager = require('../../../business/AuthManager');
 const UserManager = require('../../../business/UserManager');
 const mutator = require('./mutator');
 
@@ -29,7 +28,7 @@ const UserProfileController = {
   completeRegistration: async (request, { locals }) => {
     const { username, name } = request.inputs;
     const { token: authToken } = locals;
-    const { user, token } = await AuthManager.completeRegistration({ id: authToken.id, username, name });
+    const { user, token } = await UserManager.completeRegistration({ id: authToken.id, username, name });
     return mutator.get({ user, token });
   },
 };

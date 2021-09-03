@@ -2,7 +2,6 @@ const UserRepository = require('../repositories/UserRepository');
 const Publisher = require('../utils/publisher');
 const ApplicationError = require('../ApplicationError');
 const ErrorCodes = require('../ErrorCodes');
-const AuthManager = require('./AuthManager');
 
 const UserManager = {
   upsert: async (email, { oneTimePassword }) => {
@@ -53,8 +52,11 @@ const UserManager = {
   },
 
   completeRegistration: async ({ id, username, name }) => {
-    if (UserManager.isUsernameTaken(username)) {
-      throw new ApplicationError(ErrorCodes.UsernameTaken);
+    const AuthManager = require('./AuthManager');
+    if (await UserManager.isUsernameTaken(username)) {
+      throw new ApplicationError({
+        error: ErrorCodes.UsernameTaken
+      });
     }
     const user = await UserManager.updateOne({ id }, {
       registrationCompleted: true,

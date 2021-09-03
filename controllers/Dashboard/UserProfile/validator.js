@@ -12,8 +12,7 @@ module.exports = {
     profilePhoto: Joi.string().trim().max(100).optional(),
   })),
   completeRegistration: isValid(Joi.object().keys({
-    username: Joi.string().trim().lowercase().email({ minDomainSegments: 2 })
-      .required(),
+    username: Joi.string().trim().lowercase(),
     name: Joi.string().trim().required()
   }).required()),
 };

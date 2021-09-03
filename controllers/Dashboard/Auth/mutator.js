@@ -2,13 +2,14 @@ module.exports = {
   verify: ({ user, token }) => {
     return {
       user: {
-        code: user.code,
+        id: user.id,
+        username: user.username,
         email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        confirmed: user.confirmed,
+        name: user.name,
+        emailConfirmed: user.emailConfirmed,
         registrationCompleted: user.registrationCompleted,
-        status: user.status,
+        planCode: user.planCode,
+        profilePhoto: user.profilePhoto
       },
       token
     };

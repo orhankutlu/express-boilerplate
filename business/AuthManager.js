@@ -37,8 +37,8 @@ const AuthManager = {
         }
       });
     }
-    if (!user.confirmed) {
-      user = await UserManager.updateOne(user.id, {
+    if (!user.emailConfirmed) {
+      user = await UserManager.updateOne({ id: user.id }, {
         emailConfirmed: true,
         oneTimePassword
       });

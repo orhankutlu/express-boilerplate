@@ -16,7 +16,7 @@ const UserProfileController = {
       profilePhoto
     } = request.inputs;
 
-    const user = await UserManager.updateOne(token.id, {
+    const user = await UserManager.updateOne({ id: token.id }, {
       email,
       fullName,
       username,

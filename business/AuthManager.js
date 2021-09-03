@@ -54,7 +54,7 @@ const AuthManager = {
       id: user.id,
       username: user.username,
       email: user.email,
-      fullName: user.fullName,
+      name: user.name,
       registrationCompleted: user.registrationCompleted,
       profilePhoto: user.profilePhoto,
       planCode: user.planCode,

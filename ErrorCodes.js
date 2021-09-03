@@ -28,5 +28,8 @@ module.exports = {
   },
   UserNotFound: {
     name: 'UserNotFound'
+  },
+  UsernameTaken: {
+    name: 'UsernameTaken'
   }
 };

@@ -18,4 +18,11 @@ router.put(
   actionHandler(controller.update)
 );
 
+router.put(
+  '/me/complete-registration',
+  middlewareHandler(validator.completeRegistration),
+  actionHandler(controller.completeRegistration)
+);
+
+
 module.exports = router;

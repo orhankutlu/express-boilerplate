@@ -19,10 +19,12 @@ const UserRepository = {
   findOne: async ({
     email = null,
     id = null,
+    username = null,
   }) => {
     const where = _.omitBy({
       email,
-      _id: id
+      _id: id,
+      username
     }, _.isNil);
 
     return UserModel.findOne(where);
@@ -30,7 +32,7 @@ const UserRepository = {
   updateOne: async ({ id }, {
     emailConfirmed,
     registrationCompleted,
-    fullName,
+    name,
     username,
     profilePhoto,
     email,
@@ -41,7 +43,7 @@ const UserRepository = {
     const update = _.omitBy({
       emailConfirmed,
       registrationCompleted,
-      fullName,
+      name,
       username,
       profilePhoto,
       email

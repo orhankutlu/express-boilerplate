@@ -2,6 +2,7 @@ const UserRepository = require('../repositories/UserRepository');
 const Publisher = require('../utils/publisher');
 const ApplicationError = require('../ApplicationError');
 const ErrorCodes = require('../ErrorCodes');
+const AuthManager = require('./AuthManager');
 
 const UserManager = {
   upsert: async (email, { oneTimePassword }) => {
@@ -31,7 +32,7 @@ const UserManager = {
   updateOne: async ({ id }, {
     emailConfirmed,
     registrationCompleted,
-    fullName,
+    name,
     username,
     profilePhoto,
     email,
@@ -39,12 +40,29 @@ const UserManager = {
     const user = await UserRepository.updateOne({ id }, {
       emailConfirmed,
       registrationCompleted,
-      fullName,
+      name,
       username,
       profilePhoto,
       email,
     });
     return user;
+  },
+  isUsernameTaken: async (username) => {
+    const user = await UserRepository.findOne({ username });
+    return !!user;
+  },
+
+  completeRegistration: async ({ id, username, name }) => {
+    if (UserManager.isUsernameTaken(username)) {
+      throw new ApplicationError(ErrorCodes.UsernameTaken);
+    }
+    const user = await UserManager.updateOne({ id }, {
+      registrationCompleted: true,
+      name,
+      username
+    });
+    const token = AuthManager.generateToken(user);
+    return { token, user };
   },
 };
 

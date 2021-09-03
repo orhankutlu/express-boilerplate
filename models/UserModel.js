@@ -10,7 +10,7 @@ const USER_SCHEMA = {
     type: mongoose.Schema.Types.String,
     unique: true
   },
-  fullName: mongoose.Schema.Types.String,
+  name: mongoose.Schema.Types.String,
   emailConfirmed: {
     type: mongoose.Schema.Types.Boolean,
     default: false,

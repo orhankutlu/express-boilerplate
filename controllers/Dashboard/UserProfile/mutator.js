@@ -1,5 +1,5 @@
 module.exports = {
-  get: ({ user }) => {
+  get: ({ user, token }) => {
     return {
       user: {
         id: user.id,
@@ -11,6 +11,7 @@ module.exports = {
         planCode: user.planCode,
         profilePhoto: user.profilePhoto
       },
+      token
     };
   }
 };

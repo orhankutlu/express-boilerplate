@@ -76,7 +76,7 @@ const UserManager = {
       name,
       username
     });
-    const token = AuthManager.generateToken(user);
+    const token = await AuthManager.generateToken(user);
     return { token, user };
   },
 };

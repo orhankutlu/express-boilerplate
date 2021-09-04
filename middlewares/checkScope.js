@@ -1,5 +1,6 @@
 const ApplicationError = require('../ApplicationError');
 const ErrorCodes = require('../ErrorCodes');
+
 const checkScope = (requiredScope) => {
   return async (request, response) => {
     const { scopes = [] } = response.locals.token;

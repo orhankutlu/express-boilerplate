@@ -4,7 +4,7 @@ const router = express.Router({});
 
 const actionHandler = require('../../handlers/actionHandler');
 
-router.get('/', actionHandler(async (request) => {
+router.get('/', actionHandler(async () => {
   // optional: add further things to check (e.g. connecting to dababase)
   return {
     uptime: process.uptime(),

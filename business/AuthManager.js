@@ -51,13 +51,15 @@ const AuthManager = {
   },
   generateToken: async (user) => {
     const token = await TokenManager.sign({
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      name: user.name,
-      registrationCompleted: user.registrationCompleted,
-      profilePhoto: user.profilePhoto,
-      planCode: user.planCode,
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        name: user.name,
+        registrationCompleted: user.registrationCompleted,
+        profilePhoto: user.profilePhoto,
+        planCode: user.planCode,
+      },
       scopes: ['user']
     });
     return token;
